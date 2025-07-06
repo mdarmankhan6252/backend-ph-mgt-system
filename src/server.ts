@@ -1,20 +1,22 @@
-import { Server } from 'http';
-import mongoose from 'mongoose';
-import app from './app';
+import express, { Request, Response } from 'express';
+import cors from 'cors'
+import dotenv from 'dotenv'
+import connectDB from './app/config/db';
 
-let server: Server;
+const app = express();
+const port = process.env.PORT || 5000;
 
-const startServer = async () => {
-   try {
-      await mongoose.connect("mongodb+srv://ph-tour-management:m3C8aldnbNY0cXAs@cluster0.ewhtdrn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
-      console.log('Connected to DB');
+dotenv.config();
 
-      server = app.listen(5000, () => {
-         console.log('Server is listening to port', 5000);
-      })
-   } catch (error) {
-      console.log(error);
+app.use(express.json());
+app.use(cors())
 
-   }
-}
-startServer();
+connectDB();
+
+app.get('/', (req: Request, res: Response) => {
+   res.send("Server Is Working.")
+})
+
+app.listen(port, () => {
+   console.log("");
+})

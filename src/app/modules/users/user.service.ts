@@ -1,8 +1,8 @@
 import { IUser } from "./user.interface";
 import User from "./user.model";
 
-const createUser = async(payload: Partial<IUser>) =>{
-    const {name, email} = payload;
+const createUser = async (payload: Partial<IUser>) => {
+    const { name, email } = payload;
 
     const user = await User.create({
         name,
@@ -11,8 +11,10 @@ const createUser = async(payload: Partial<IUser>) =>{
     return user
 };
 
-const getAllUsers = async(req: Request, res: Response) =>{
-    const users = await User.find()
+
+
+const getAllUsers = async () => {
+    const users = await User.find({})
     return users
 }
 

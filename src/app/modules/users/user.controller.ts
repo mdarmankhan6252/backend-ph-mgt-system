@@ -14,37 +14,6 @@ const catchAsync = (fn: AsyncHandler) => (req: Request, res: Response, next: Nex
    })
 }
 
-// const createUserFunction = async (req: Request, res: Response) => {
-//    const user = await UserServices.createUser(req.body)
-
-//    res.status(httpsStatus.CREATED).json({
-//       message: "User created successfully!",
-//       data: user
-//    })
-// }
-
-
-
-// export const createUser = async (req: Request, res: Response, next: NextFunction) => {
-//    // try {
-
-//    //    createUserFunction(req, res)
-
-//    //    res.status(httpsStatus.CREATED).json({
-//    //       success: true,
-//    //       message: 'User created successfully!',
-//    //       data: user
-//    //    })
-
-//    // } catch (error: any) {
-//    //    console.log(error);
-//    //    next(error)
-//    // }
-
-
-
-// }
-
 
 
 export const createUser = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
@@ -70,18 +39,6 @@ export const getAllUsers = catchAsync(async (req: Request, res: Response, next: 
 })
 
 
-
-// export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
-//    try {
-//       const users = await UserServices.getAllUsers();
-//       return users;
-//    } catch (error) {
-//       console.log(error);
-//       next(error)
-//    }
-// }
-
-//function => req - res function. try catch => req res
 
 
 /*

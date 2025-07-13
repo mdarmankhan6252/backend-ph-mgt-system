@@ -1,7 +1,7 @@
-import { IUser } from "../users/user.interface"
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { IUser } from "../users/user.interface";
 import User from "../users/user.model";
-import httpStatus from 'http-status';
-import bcrypt from 'bcrypt'
 
 
 const credentialsLogin = async (payload: Partial<IUser>) => {
@@ -20,8 +20,17 @@ const credentialsLogin = async (payload: Partial<IUser>) => {
       throw new Error("Incorrect Password")
    }
 
+   const jwtPayload = {
+      userid: isUserExist._id,
+      email: isUserExist.email,
+      role: isUserExist.role
+   }
+
+   const accessToken = jwt.sign(jwtPayload, 'Secret', { expiresIn: "1d" })
+
+
    return {
-      email
+      accessToken
    }
 
 }
